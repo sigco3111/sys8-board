@@ -41,7 +41,7 @@ const PostDetail: React.FC<PostDetailProps> = ({
 
   if (!post) {
     return (
-      <div className="flex-grow flex items-center justify-center bg-slate-50 text-slate-500">
+      <div className="flex-grow flex items-center justify-center bg-mac-window text-slate-500">
         <div className="text-center">
             <MessagesSquareIcon className="mx-auto w-16 h-16 text-slate-300" />
             <p className="mt-2 text-lg">게시물을 선택하여 여기에서 보세요.</p>
@@ -56,11 +56,11 @@ const PostDetail: React.FC<PostDetailProps> = ({
     : defaultAvatar;
 
   return (
-    <div className="flex-grow bg-slate-50 flex flex-col h-full overflow-hidden">
-      <div className="p-6 border-b border-slate-200">
+    <div className="flex-grow mac-window flex flex-col h-full overflow-hidden">
+      <div className="p-6 border-b border-mac-border">
         <div className="flex justify-between items-start">
           <div>
-            <h1 className="text-2xl font-bold text-slate-900">{post.title}</h1>
+            <h1 className="text-2xl font-bold text-mac-dark">{post.title}</h1>
           </div>
           
           <div className="flex items-center">
@@ -76,14 +76,14 @@ const PostDetail: React.FC<PostDetailProps> = ({
               <div className="flex space-x-2">
                 <button 
                   onClick={() => post && onEditPost(post)}
-                  className="p-1.5 rounded-full text-slate-600 hover:bg-slate-200 transition-colors"
+                  className="mac-button p-1.5"
                   title="게시물 수정"
                 >
                   <PencilIcon className="w-5 h-5" />
                 </button>
                 <button 
                   onClick={onDeletePost}
-                  className="p-1.5 rounded-full text-slate-600 hover:bg-slate-200 transition-colors"
+                  className="mac-button p-1.5"
                   title="게시물 삭제"
                 >
                   <TrashIcon className="w-5 h-5" />
@@ -104,12 +104,12 @@ const PostDetail: React.FC<PostDetailProps> = ({
             }}
           />
           <div>
-            <p className="font-semibold text-slate-800">{post.author.name}</p>
+            <p className="font-semibold text-mac-dark">{post.author.name}</p>
             <p className="text-slate-500">{new Date(post.date).toLocaleString()}</p>
           </div>
         </div>
       </div>
-      <div className="overflow-y-auto flex-grow">
+      <div className="overflow-y-auto flex-grow mac-os8-scrollbar">
         <div className="p-6">
           <div className="prose prose-slate prose-headings:font-bold prose-headings:text-slate-900 prose-p:text-slate-700 prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline prose-code:bg-slate-100 prose-code:text-slate-800 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-pre:bg-slate-800 prose-pre:text-slate-100 max-w-none">
             <ReactMarkdown 
@@ -144,12 +144,12 @@ const PostDetail: React.FC<PostDetailProps> = ({
             </ReactMarkdown>
           </div>
            {post.tags && post.tags.length > 0 && (
-            <div className="mt-8 pt-4 border-t border-slate-200 flex items-center flex-wrap gap-2">
+            <div className="mt-8 pt-4 border-t border-mac-border flex items-center flex-wrap gap-2">
               {post.tags.map(tag => (
                 <button
                   key={tag}
                   onClick={() => onSelectTag(tag)}
-                  className="flex items-center space-x-1.5 bg-blue-100 text-blue-700 hover:bg-blue-200 text-xs font-semibold px-2.5 py-1 rounded-full transition-colors"
+                  className="flex items-center space-x-1.5 mac-button text-xs font-semibold px-2.5 py-1"
                 >
                   <HashtagIcon className="w-3 h-3" />
                   <span>{tag}</span>

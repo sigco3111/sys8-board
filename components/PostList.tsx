@@ -34,9 +34,9 @@ const PostList: React.FC<PostListProps> = ({
   };
 
   return (
-    <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg flex-shrink-0 bg-white flex flex-col h-full">
+    <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg flex-shrink-0 mac-window flex flex-col h-full">
       {/* 검색창 추가 */}
-      <div className="p-3 border-b border-slate-200">
+      <div className="p-3 border-b border-mac-border">
         <div className="relative flex items-center">
           <SearchIcon className="w-5 h-5 text-slate-400 absolute left-3" />
           <input
@@ -44,21 +44,21 @@ const PostList: React.FC<PostListProps> = ({
             value={inputValue}
             onChange={handleSearchInputChange}
             placeholder="게시물 검색..."
-            className="w-full py-2 pl-10 pr-4 bg-slate-100 border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full py-2 pl-10 pr-4 mac-input"
           />
         </div>
       </div>
       
       {loading ? (
         <div className="flex items-center justify-center h-full">
-          <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
+          <div className="mac-loading"></div>
         </div>
       ) : error ? (
         <div className="text-center text-red-500 p-8">
           {error}
         </div>
       ) : (
-        <ul className="overflow-y-auto flex-grow">
+        <ul className="overflow-y-auto flex-grow mac-os8-scrollbar">
           {posts.length > 0 ? (
             posts.map((post) => (
               <PostItem

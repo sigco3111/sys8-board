@@ -56,8 +56,8 @@ const PostItem: React.FC<PostItemProps> = ({ post, isSelected, onClick }) => {
   return (
     <li
       onClick={onClick}
-      className={`py-2 px-3 border-b border-slate-200 cursor-pointer transition-colors duration-150 ${
-        isSelected ? 'bg-blue-100/70' : 'hover:bg-slate-50'
+      className={`py-2 px-3 border-b border-mac-border cursor-pointer transition-colors duration-150 mac-list-item ${
+        isSelected ? 'selected' : ''
       }`}
     >
       <div className="grid grid-cols-10 gap-2 w-full items-center">
@@ -76,10 +76,10 @@ const PostItem: React.FC<PostItemProps> = ({ post, isSelected, onClick }) => {
         {/* 제목 및 작성자 (6/10) */}
         <div className="col-span-6 min-w-0 overflow-hidden pr-1">
           <div className="flex items-center">
-            <p className={`font-medium text-xs ${isSelected ? 'text-blue-800' : 'text-slate-600'} truncate mr-2`}>{post.author.name}</p>
+            <p className={`font-medium text-xs ${isSelected ? 'text-white' : 'text-slate-600'} truncate mr-2`}>{post.author.name}</p>
             {post.isNew && <span className="w-2 h-2 bg-blue-500 rounded-full flex-shrink-0"></span>}
           </div>
-          <h3 className={`font-bold text-sm truncate ${isSelected ? 'text-slate-900' : 'text-slate-900'}`}>{post.title}</h3>
+          <h3 className={`font-bold text-sm truncate ${isSelected ? 'text-white' : 'text-slate-900'}`}>{post.title}</h3>
         </div>
         
         {/* 댓글수, 날짜, 북마크 (3/10) */}

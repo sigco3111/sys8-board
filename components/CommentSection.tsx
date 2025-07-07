@@ -113,9 +113,9 @@ const CommentSection: React.FC<CommentSectionProps> = ({ postId }) => {
   
   if (loading && comments.length === 0) {
     return (
-      <div className="p-4 border-t border-slate-200">
+      <div className="p-4 border-t border-mac-border">
         <div className="flex justify-center p-4">
-          <div className="animate-pulse text-slate-500">댓글을 불러오는 중...</div>
+          <div className="mac-loading"></div>
         </div>
       </div>
     );
@@ -123,8 +123,8 @@ const CommentSection: React.FC<CommentSectionProps> = ({ postId }) => {
   
   if (error && comments.length === 0) {
     return (
-      <div className="p-4 border-t border-slate-200">
-        <div className="bg-red-50 text-red-700 p-3 rounded-md">
+      <div className="p-4 border-t border-mac-border">
+        <div className="bg-red-50 text-red-700 p-3 mac-panel">
           <p>댓글을 불러오는 중 오류가 발생했습니다.</p>
           <p className="text-sm">{error.message}</p>
         </div>
@@ -133,10 +133,10 @@ const CommentSection: React.FC<CommentSectionProps> = ({ postId }) => {
   }
   
   return (
-    <div className="border-t border-slate-200">
+    <div className="border-t border-mac-border">
       {/* 댓글 목록 */}
       <div className="p-4">
-        <h3 className="font-semibold text-slate-800 mb-4">댓글 {comments.length}개</h3>
+        <h3 className="font-semibold text-mac-dark mb-4">댓글 {comments.length}개</h3>
         
         {comments.length === 0 ? (
           <div className="text-center py-6 text-slate-500">
@@ -145,14 +145,14 @@ const CommentSection: React.FC<CommentSectionProps> = ({ postId }) => {
         ) : (
           <div className="space-y-4">
             {comments.map(comment => (
-              <div key={comment.id} className="bg-white rounded-lg shadow-sm p-4">
+              <div key={comment.id} className="mac-panel p-4">
                 {/* 댓글 수정 모드 */}
                 {editingComment && editingComment.id === comment.id ? (
                   <form onSubmit={handleUpdateComment} className="space-y-3">
                     <textarea
                       value={editingComment.content}
                       onChange={(e) => setEditingComment({ ...editingComment, content: e.target.value })}
-                      className="w-full p-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      className="w-full p-2 mac-input"
                       rows={3}
                       disabled={submitting}
                     />
@@ -160,14 +160,14 @@ const CommentSection: React.FC<CommentSectionProps> = ({ postId }) => {
                       <button
                         type="button"
                         onClick={cancelEditing}
-                        className="px-3 py-1.5 bg-slate-100 text-slate-700 rounded-md hover:bg-slate-200"
+                        className="mac-button px-3 py-1.5"
                         disabled={submitting}
                       >
                         취소
                       </button>
                       <button
                         type="submit"
-                        className="px-3 py-1.5 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50"
+                        className="mac-button-default px-3 py-1.5"
                         disabled={submitting}
                       >
                         {submitting ? '저장 중...' : '저장'}
@@ -189,7 +189,7 @@ const CommentSection: React.FC<CommentSectionProps> = ({ postId }) => {
                       <div className="flex-grow">
                         <div className="flex justify-between items-center">
                           <div>
-                            <span className="font-semibold text-slate-800">{comment.author.name}</span>
+                            <span className="font-semibold text-mac-dark">{comment.author.name}</span>
                             <span className="text-xs text-slate-500 ml-2">
                               {new Date(comment.date).toLocaleString()}
                             </span>
@@ -200,14 +200,14 @@ const CommentSection: React.FC<CommentSectionProps> = ({ postId }) => {
                             <div className="flex space-x-1">
                               <button 
                                 onClick={() => startEditing(comment)}
-                                className="p-1 text-slate-500 hover:text-slate-700"
+                                className="mac-button p-1"
                                 title="댓글 수정"
                               >
                                 <PencilIcon className="w-4 h-4" />
                               </button>
                               <button 
                                 onClick={() => handleDeleteComment(comment.id)}
-                                className="p-1 text-slate-500 hover:text-red-600"
+                                className="mac-button p-1"
                                 title="댓글 삭제"
                               >
                                 <TrashIcon className="w-4 h-4" />
@@ -228,7 +228,7 @@ const CommentSection: React.FC<CommentSectionProps> = ({ postId }) => {
       
       {/* 댓글 작성 폼 - 게스트는 댓글 작성 폼 대신 안내 메시지 표시 */}
       {user && !user.isAnonymous ? (
-        <form onSubmit={handleSubmitComment} className="p-4 bg-slate-50">
+        <form onSubmit={handleSubmitComment} className="p-4 bg-mac-window">
           <div className="flex items-start space-x-3">
             <img 
               src={userAvatar} 
@@ -244,14 +244,14 @@ const CommentSection: React.FC<CommentSectionProps> = ({ postId }) => {
                 value={newComment}
                 onChange={(e) => setNewComment(e.target.value)}
                 placeholder="댓글을 작성하세요..."
-                className="w-full p-3 border border-slate-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full p-3 mac-input"
                 rows={2}
                 disabled={submitting}
               />
-              <div className="mt-2 flex justify-end">
+              <div className="flex justify-end mt-2">
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50"
+                  className="mac-button-default px-4 py-1.5"
                   disabled={!newComment.trim() || submitting}
                 >
                   {submitting ? '작성 중...' : '댓글 작성'}
@@ -260,13 +260,9 @@ const CommentSection: React.FC<CommentSectionProps> = ({ postId }) => {
             </div>
           </div>
         </form>
-      ) : user && user.isAnonymous ? (
-        <div className="p-4 bg-slate-50 text-center text-slate-600">
-          게스트는 댓글을 작성할 수 없습니다. <a href="#" className="text-blue-600 hover:underline">로그인</a> 후 이용해주세요.
-        </div>
       ) : (
-        <div className="p-4 bg-slate-50 text-center text-slate-600">
-          댓글을 작성하려면 <a href="#" className="text-blue-600 hover:underline">로그인</a>이 필요합니다.
+        <div className="p-4 bg-mac-window text-center">
+          <p className="text-slate-600">댓글을 작성하려면 로그인이 필요합니다.</p>
         </div>
       )}
     </div>
