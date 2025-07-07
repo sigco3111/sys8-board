@@ -21,6 +21,10 @@ export default {
         'mac-menubar': '#CCCCCC', // 메뉴바 색상
         'mac-titlebar-active': '#000080', // 활성 제목 표시줄
         'mac-titlebar-inactive': '#999999', // 비활성 제목 표시줄
+        'mac-selection-color': '#000080', // Mac OS 8 선택 색상
+        'mac-selection-text': '#FFFFFF', // Mac OS 8 선택된 텍스트 색상
+        'mac-desktop-bg': '#BBBBBB', // Mac OS 8 데스크톱 배경색
+        'mac-icon-text-shadow': '#000000', // Mac OS 8 아이콘 텍스트 그림자
       },
       fontFamily: {
         'mac': ['Chicago', 'ChicagoFLF', 'Charcoal', 'monaco', 'monospace', 'system-ui'],
@@ -31,9 +35,19 @@ export default {
         'mac-input': 'inset 1px 1px 0 #777777, inset -1px -1px 0 #FFFFFF',
         'mac-button-active': 'inset -1px -1px 0 #FFFFFF, inset 1px 1px 0 #888888',
         'mac-dock': '0 0 0 1px #000000',
+        'mac-icon-selected': '0 0 0 1px #000080', // Mac OS 8 선택된 아이콘 테두리
       },
       borderWidth: {
         '1': '1px',
+      },
+      animation: {
+        'mac-click': 'mac-click 0.2s ease-in-out', // Mac OS 8 클릭 애니메이션
+      },
+      keyframes: {
+        'mac-click': {
+          '0%, 100%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(0.95)' },
+        },
       },
     },
   },

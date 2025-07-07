@@ -1,8 +1,12 @@
 import React from 'react';
 
 export const FolderIcon = ({ className }: { className?: string }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" className={className} width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2z"></path>
+  <svg xmlns="http://www.w3.org/2000/svg" className={className} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
+    {/* Mac OS 8 스타일 폴더 아이콘 */}
+    <path d="M2 7 L2 20 L22 20 L22 7 L12 7 L10 5 L2 5 Z" fill="#CCCCCC" stroke="#000000" />
+    <path d="M2 7 L2 5 L10 5 L12 7 Z" fill="#EEEEEE" stroke="#000000" />
+    <path d="M2 7 L22 7 L22 8 L2 8 Z" fill="#999999" stroke="none" />
+    <path d="M3 6 L3 19 L21 19 L21 8 L12 8 L10 6 Z" fill="none" stroke="#FFFFFF" />
   </svg>
 );
 
@@ -13,8 +17,12 @@ export const MessagesSquareIcon = ({ className = "w-6 h-6" }: { className?: stri
 );
 
 export const BookmarkIcon = ({ className = "w-6 h-6", fill = "none" }: { className?: string; fill?: string }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill={fill} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill={fill} stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    {/* Mac OS 8 스타일 북마크 아이콘 */}
+    <rect x="6" y="2" width="12" height="20" rx="1" ry="1" fill="#CCCCCC" stroke="currentColor" />
+    <path d="M7 3 L17 3 L17 21 L7 21 Z" fill="none" stroke="#FFFFFF" />
+    <path d="M17 3 L17 21 L7 21" fill="none" stroke="#888888" />
+    <path d="M8 3 L8 17 L12 15 L16 17 L16 3 Z" fill={fill === "none" ? "#EEEEEE" : fill} stroke="currentColor" />
   </svg>
 );
 
@@ -41,7 +49,13 @@ export const SearchIcon = ({ className }: { className?: string }) => (
 
 export const AppleIcon = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 24 24" className={className} fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+    {/* Mac OS 8 스타일 애플 로고 */}
+    <path d="M12 3C10.5 3 9.5 4 8.5 4.5C7.5 5 6 5 5 4.5V6C6 6.5 7.5 6.5 8.5 6C9.5 5.5 10.5 4.5 12 4.5C13.5 4.5 14.5 5.5 15.5 6C16.5 6.5 18 6.5 19 6V4.5C18 5 16.5 5 15.5 4.5C14.5 4 13.5 3 12 3Z" fill="currentColor" />
+    <path d="M12 6C10.5 6 9.5 7 8.5 7.5C7.5 8 6 8 5 7.5V9C6 9.5 7.5 9.5 8.5 9C9.5 8.5 10.5 7.5 12 7.5C13.5 7.5 14.5 8.5 15.5 9C16.5 9.5 18 9.5 19 9V7.5C18 8 16.5 8 15.5 7.5C14.5 7 13.5 6 12 6Z" fill="currentColor" />
+    <path d="M12 9C10.5 9 9.5 10 8.5 10.5C7.5 11 6 11 5 10.5V12C6 12.5 7.5 12.5 8.5 12C9.5 11.5 10.5 10.5 12 10.5C13.5 10.5 14.5 11.5 15.5 12C16.5 12.5 18 12.5 19 12V10.5C18 11 16.5 11 15.5 10.5C14.5 10 13.5 9 12 9Z" fill="currentColor" />
+    <path d="M12 12C10.5 12 9.5 13 8.5 13.5C7.5 14 6 14 5 13.5V15C6 15.5 7.5 15.5 8.5 15C9.5 14.5 10.5 13.5 12 13.5C13.5 13.5 14.5 14.5 15.5 15C16.5 15.5 18 15.5 19 15V13.5C18 14 16.5 14 15.5 13.5C14.5 13 13.5 12 12 12Z" fill="currentColor" />
+    <path d="M12 15C10.5 15 9.5 16 8.5 16.5C7.5 17 6 17 5 16.5V18C6 18.5 7.5 18.5 8.5 18C9.5 17.5 10.5 16.5 12 16.5C13.5 16.5 14.5 17.5 15.5 18C16.5 18.5 18 18.5 19 18V16.5C18 17 16.5 17 15.5 16.5C14.5 16 13.5 15 12 15Z" fill="currentColor" />
+    <path d="M12 18C10.5 18 9.5 19 8.5 19.5C7.5 20 6 20 5 19.5V21C6 21.5 7.5 21.5 8.5 21C9.5 20.5 10.5 19.5 12 19.5C13.5 19.5 14.5 20.5 15.5 21C16.5 21.5 18 21.5 19 21V19.5C18 20 16.5 20 15.5 19.5C14.5 19 13.5 18 12 18Z" fill="currentColor" />
   </svg>
 );
 
@@ -62,9 +76,18 @@ export const BatteryIcon = ({ className }: { className?: string }) => (
 );
 
 export const SettingsIcon = ({ className }: { className?: string }) => (
-    <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24" fill="currentColor">
-        <path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24-.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/>
-    </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
+    {/* Mac OS 8 스타일 설정 아이콘 */}
+    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" fill="#CCCCCC" stroke="currentColor" />
+    <path d="M4 4 L20 4 L20 20 L4 20 Z" fill="none" stroke="#FFFFFF" />
+    <path d="M20 4 L20 20 L4 20" fill="none" stroke="#888888" />
+    <circle cx="12" cy="12" r="6" fill="#999999" stroke="currentColor" />
+    <circle cx="12" cy="12" r="2" fill="#FFFFFF" stroke="currentColor" />
+    <rect x="11.5" y="4" width="1" height="3" fill="#999999" stroke="currentColor" strokeWidth="0.5" />
+    <rect x="11.5" y="17" width="1" height="3" fill="#999999" stroke="currentColor" strokeWidth="0.5" />
+    <rect x="17" y="11.5" width="3" height="1" fill="#999999" stroke="currentColor" strokeWidth="0.5" />
+    <rect x="4" y="11.5" width="3" height="1" fill="#999999" stroke="currentColor" strokeWidth="0.5" />
+  </svg>
 );
 
 export const GoogleIcon = ({ className }: { className?: string }) => (
@@ -78,8 +101,13 @@ export const GoogleIcon = ({ className }: { className?: string }) => (
 );
 
 export const UserIcon = ({ className }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" xmlns="http://www.w3.org/2000/svg">
+    {/* Mac OS 8 스타일 사용자 아이콘 */}
+    <rect x="4" y="4" width="16" height="16" rx="2" ry="2" fill="#CCCCCC" stroke="currentColor" />
+    <path d="M5 5 L19 5 L19 19 L5 19 Z" fill="none" stroke="#FFFFFF" />
+    <path d="M19 5 L19 19 L5 19" fill="none" stroke="#888888" />
+    <circle cx="12" cy="10" r="3" fill="#EEEEEE" stroke="currentColor" />
+    <path d="M7 18 C7 14 17 14 17 18" fill="#EEEEEE" stroke="currentColor" />
   </svg>
 );
 
@@ -99,8 +127,13 @@ export const PencilIcon = ({ className }: { className?: string }) => (
 );
 
 export const TrashIcon = ({ className }: { className?: string }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" className={className} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <polyline points="3 6 5 6 21 6"></polyline>
-    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+  <svg xmlns="http://www.w3.org/2000/svg" className={className} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
+    {/* Mac OS 8 스타일 휴지통 아이콘 */}
+    <path d="M5 5 L19 5 L18 22 L6 22 Z" fill="#CCCCCC" stroke="currentColor" />
+    <path d="M6 6 L18 6 L17 21 L7 21 Z" fill="none" stroke="#FFFFFF" />
+    <path d="M18 6 L17 21 L7 21" fill="none" stroke="#888888" />
+    <path d="M8 3 L16 3 L16 5 L8 5 Z" fill="#EEEEEE" stroke="currentColor" />
+    <line x1="10" y1="9" x2="10" y2="18" stroke="currentColor" />
+    <line x1="14" y1="9" x2="14" y2="18" stroke="currentColor" />
   </svg>
 );

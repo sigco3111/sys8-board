@@ -1,6 +1,6 @@
 /**
  * 데스크톱 화면을 표현하는 컴포넌트
- * macOS 스타일의 데스크톱 환경을 제공합니다.
+ * Mac OS 8 스타일의 데스크톱 환경을 제공합니다.
  */
 import React, { useState, useEffect } from 'react';
 import MenuBar from './MenuBar';
@@ -16,9 +16,9 @@ const LOGOUT_FLAG_KEY = 'mac_board_force_logout';
 const WALLPAPER_KEY = 'mac_board_wallpaper';
 const WALLPAPER_TYPE_KEY = 'mac_board_wallpaper_type';
 // 기본 배경화면 경로
-const DEFAULT_WALLPAPER = '/assets/wallpapers/default.jpg';
+const DEFAULT_WALLPAPER = '/assets/wallpapers/mac_os8_pattern.svg';
 // 대체 배경색
-const FALLBACK_BG_COLOR = '#1E3A8A'; // 짙은 파란색
+const FALLBACK_BG_COLOR = '#BBBBBB'; // Mac OS 8 기본 회색
 
 type BoardState = 'closed' | 'board' | 'bookmarks';
 
@@ -62,9 +62,30 @@ const Desktop: React.FC<DesktopProps> = ({ user, onOpenBoard, onLogout }) => {
   }, [wallpaper]);
 
   const desktopItems = [
-    { id: 'bulletin-board', name: '게시판', Icon: FolderIcon, onOpen: () => setBoardState('board'), color: 'text-sky-400' },
-    { id: 'bookmark', name: '북마크', Icon: FolderIcon, onOpen: () => setBoardState('bookmarks'), color: 'text-sky-400' },
-    { id: 'settings', name: '설정', Icon: SettingsIcon, onOpen: () => setSettingsModalOpen(true), color: 'text-gray-500' },
+    { 
+      id: 'bulletin-board', 
+      name: '게시판', 
+      Icon: FolderIcon, 
+      onOpen: () => setBoardState('board'), 
+      color: 'text-black',
+      iconSrc: '/assets/icons/folder.svg'
+    },
+    { 
+      id: 'bookmark', 
+      name: '북마크', 
+      Icon: FolderIcon, 
+      onOpen: () => setBoardState('bookmarks'), 
+      color: 'text-black',
+      iconSrc: '/assets/icons/bookmark.svg'
+    },
+    { 
+      id: 'settings', 
+      name: '설정', 
+      Icon: SettingsIcon, 
+      onOpen: () => setSettingsModalOpen(true), 
+      color: 'text-black',
+      iconSrc: '/assets/icons/settings.svg'
+    },
   ];
 
   const handleCloseBoard = () => {
@@ -104,14 +125,21 @@ const Desktop: React.FC<DesktopProps> = ({ user, onOpenBoard, onLogout }) => {
     return () => clearInterval(interval);
   }, [onLogout]);
 
+  // Mac OS 8 스타일 배경 설정
   const bgStyle = defaultImageError || (wallpaper === DEFAULT_WALLPAPER && defaultImageError) ?
     { backgroundColor: FALLBACK_BG_COLOR } :
-    {
-      backgroundImage: `url(${wallpaper})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      backgroundRepeat: 'no-repeat'
-    };
+    wallpaper.endsWith('.svg') ?
+      {
+        backgroundImage: `url(${wallpaper})`,
+        backgroundRepeat: 'repeat',
+        backgroundColor: FALLBACK_BG_COLOR
+      } :
+      {
+        backgroundImage: `url(${wallpaper})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      };
 
   return (
     <div
@@ -133,11 +161,31 @@ const Desktop: React.FC<DesktopProps> = ({ user, onOpenBoard, onLogout }) => {
               setSelectedId(item.id);
               item.onOpen();
             }}
-            className="flex flex-col items-center w-28 h-28 space-y-1 text-white font-medium focus:outline-none rounded-lg p-2 transition-colors"
-            style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.6)' }}
+            className="flex flex-col items-center w-28 h-28 space-y-1 focus:outline-none rounded-lg p-2 transition-colors"
           >
-            <item.Icon className={`w-20 h-20 ${item.color} drop-shadow-lg`} />
-            <span className={`text-base font-semibold px-2 py-0.5 rounded-md ${selectedId === item.id ? 'bg-blue-600 text-white' : 'bg-transparent'}`}>
+            {/* Mac OS 8 스타일 아이콘 */}
+            {item.iconSrc ? (
+              <img 
+                src={item.iconSrc} 
+                alt={item.name} 
+                className="w-16 h-16"
+                onError={(e) => {
+                  // 이미지 로드 실패 시 SVG 아이콘으로 대체
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                  const parent = target.parentElement;
+                  if (parent) {
+                    const svgIcon = document.createElement('div');
+                    svgIcon.className = `w-16 h-16 ${item.color}`;
+                    svgIcon.innerHTML = `<item.Icon className="w-full h-full" />`;
+                    parent.insertBefore(svgIcon, target);
+                  }
+                }}
+              />
+            ) : (
+              <item.Icon className={`w-16 h-16 ${item.color}`} />
+            )}
+            <span className={`text-base font-semibold px-2 py-0.5 rounded-md ${selectedId === item.id ? 'bg-mac-selection-color text-white' : 'text-black'}`}>
               {item.name}
             </span>
           </button>
