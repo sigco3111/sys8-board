@@ -9,7 +9,7 @@ import Dashboard from './Dashboard';
 // 기본 배경화면 경로
 const DEFAULT_WALLPAPER = '/assets/wallpapers/default.jpg';
 // 대체 배경색
-const FALLBACK_BG_COLOR = '#1E3A8A'; // 짙은 파란색
+const FALLBACK_BG_COLOR = '#BBBBBB'; // Mac OS 8 기본 회색
 
 // 로컬 스토리지 키
 const WALLPAPER_KEY = 'mac_board_wallpaper';
@@ -111,17 +111,15 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
 
   // 기본 배경화면으로 초기화
   const handleResetWallpaper = () => {
-    setWallpaperUrl(DEFAULT_WALLPAPER);
-    setIsDefaultBackground(true);
-    onWallpaperChange(''); // 빈 문자열을 전달하여 Desktop.tsx에서 기본 배경화면으로 초기화하게 함
+    // 기본 배경화면 대신 바로 회색 배경을 사용하도록 설정
     localStorage.removeItem(WALLPAPER_KEY);
-    localStorage.setItem(WALLPAPER_TYPE_KEY, 'default');
+    localStorage.setItem(WALLPAPER_TYPE_KEY, 'gray');
     
-    // 기본 이미지 로딩 확인
-    const img = new Image();
-    img.onload = () => setDefaultImageError(false);
-    img.onerror = () => setDefaultImageError(true);
-    img.src = DEFAULT_WALLPAPER;
+    // 빈 문자열을 전달하여 Desktop.tsx에서 기본 배경색을 사용하게 함
+    setWallpaperUrl('');
+    setIsDefaultBackground(true);
+    setDefaultImageError(true); // 강제로 에러 상태로 설정하여 회색 배경 사용
+    onWallpaperChange('');
   };
 
   // 파일 선택 다이얼로그 열기
@@ -130,7 +128,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
   };
 
   // 배경화면 미리보기 스타일 결정
-  const previewBgStyle = defaultImageError || (wallpaperUrl === DEFAULT_WALLPAPER && defaultImageError) ? 
+  const previewBgStyle = defaultImageError || (wallpaperUrl === DEFAULT_WALLPAPER && defaultImageError) || wallpaperUrl === '' ? 
     { backgroundColor: FALLBACK_BG_COLOR } : 
     { 
       backgroundImage: `url(${wallpaperUrl})`,

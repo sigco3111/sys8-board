@@ -46,11 +46,16 @@ const Desktop: React.FC<DesktopProps> = ({ user, onOpenBoard, onLogout }) => {
     const type = localStorage.getItem(WALLPAPER_TYPE_KEY);
     if (type === 'default' || !type) {
       return DEFAULT_WALLPAPER;
+    } else if (type === 'gray') {
+      return ''; // 빈 문자열 반환하여 회색 배경 사용
     } else {
       return localStorage.getItem(WALLPAPER_KEY) || DEFAULT_WALLPAPER;
     }
   });
-  const [defaultImageError, setDefaultImageError] = useState<boolean>(false);
+  const [defaultImageError, setDefaultImageError] = useState<boolean>(() => {
+    // gray 타입이면 기본적으로 에러 상태로 설정
+    return localStorage.getItem(WALLPAPER_TYPE_KEY) === 'gray';
+  });
 
   useEffect(() => {
     if (wallpaper === DEFAULT_WALLPAPER) {
@@ -97,11 +102,10 @@ const Desktop: React.FC<DesktopProps> = ({ user, onOpenBoard, onLogout }) => {
       setWallpaper(wallpaperUrl);
       setDefaultImageError(false);
     } else {
-      setWallpaper(DEFAULT_WALLPAPER);
-      const img = new Image();
-      img.onload = () => setDefaultImageError(false);
-      img.onerror = () => setDefaultImageError(true);
-      img.src = DEFAULT_WALLPAPER;
+      // 빈 문자열이 전달된 경우 회색 배경 사용
+      setWallpaper('');
+      setDefaultImageError(true);
+      localStorage.setItem(WALLPAPER_TYPE_KEY, 'gray');
     }
   };
 
@@ -126,7 +130,7 @@ const Desktop: React.FC<DesktopProps> = ({ user, onOpenBoard, onLogout }) => {
   }, [onLogout]);
 
   // Mac OS 8 스타일 배경 설정
-  const bgStyle = defaultImageError || (wallpaper === DEFAULT_WALLPAPER && defaultImageError) ?
+  const bgStyle = defaultImageError || (wallpaper === DEFAULT_WALLPAPER && defaultImageError) || wallpaper === '' ?
     { backgroundColor: FALLBACK_BG_COLOR } :
     wallpaper.endsWith('.svg') ?
       {
