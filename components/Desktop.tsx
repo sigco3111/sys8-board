@@ -15,8 +15,8 @@ const LOGOUT_FLAG_KEY = 'mac_board_force_logout';
 // 배경화면 저장을 위한 로컬 스토리지 키
 const WALLPAPER_KEY = 'mac_board_wallpaper';
 const WALLPAPER_TYPE_KEY = 'mac_board_wallpaper_type';
-// 기본 배경화면 경로
-const DEFAULT_WALLPAPER = '/assets/wallpapers/mac_os8_pattern.svg';
+// 기본 배경화면 경로 (빈 문자열로 설정하여 회색 배경 사용)
+const DEFAULT_WALLPAPER = '';
 // 대체 배경색
 const FALLBACK_BG_COLOR = '#BBBBBB'; // Mac OS 8 기본 회색
 
@@ -45,6 +45,7 @@ const Desktop: React.FC<DesktopProps> = ({ user, onOpenBoard, onLogout }) => {
   const [wallpaper, setWallpaper] = useState<string>(() => {
     const type = localStorage.getItem(WALLPAPER_TYPE_KEY);
     if (type === 'default' || !type) {
+      // 기본값으로 빈 문자열 반환하여 회색 배경 사용
       return DEFAULT_WALLPAPER;
     } else if (type === 'gray') {
       return ''; // 빈 문자열 반환하여 회색 배경 사용
@@ -53,16 +54,17 @@ const Desktop: React.FC<DesktopProps> = ({ user, onOpenBoard, onLogout }) => {
     }
   });
   const [defaultImageError, setDefaultImageError] = useState<boolean>(() => {
-    // gray 타입이면 기본적으로 에러 상태로 설정
-    return localStorage.getItem(WALLPAPER_TYPE_KEY) === 'gray';
+    // 기본값이 빈 문자열이므로 기본적으로 에러 상태로 설정
+    return localStorage.getItem(WALLPAPER_TYPE_KEY) === 'gray' || DEFAULT_WALLPAPER === '';
   });
 
   useEffect(() => {
-    if (wallpaper === DEFAULT_WALLPAPER) {
+    // 기본 배경화면이 빈 문자열이면 이미지 로드 시도가 필요 없음
+    if (wallpaper && wallpaper !== '') {
       const img = new Image();
       img.onload = () => setDefaultImageError(false);
       img.onerror = () => setDefaultImageError(true);
-      img.src = DEFAULT_WALLPAPER;
+      img.src = wallpaper;
     }
   }, [wallpaper]);
 
@@ -130,7 +132,7 @@ const Desktop: React.FC<DesktopProps> = ({ user, onOpenBoard, onLogout }) => {
   }, [onLogout]);
 
   // Mac OS 8 스타일 배경 설정
-  const bgStyle = defaultImageError || (wallpaper === DEFAULT_WALLPAPER && defaultImageError) || wallpaper === '' ?
+  const bgStyle = defaultImageError || !wallpaper || wallpaper === '' ?
     { backgroundColor: FALLBACK_BG_COLOR } :
     wallpaper.endsWith('.svg') ?
       {

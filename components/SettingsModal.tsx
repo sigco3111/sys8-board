@@ -6,8 +6,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import TrafficLights from './TrafficLights';
 import Dashboard from './Dashboard';
 
-// 기본 배경화면 경로
-const DEFAULT_WALLPAPER = '/assets/wallpapers/default.jpg';
+// 기본 배경화면 경로 (빈 문자열로 설정하여 회색 배경 사용)
+const DEFAULT_WALLPAPER = '';
 // 대체 배경색
 const FALLBACK_BG_COLOR = '#BBBBBB'; // Mac OS 8 기본 회색
 
@@ -50,16 +50,19 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
     const type = localStorage.getItem(WALLPAPER_TYPE_KEY);
     return type === 'default' || !localStorage.getItem(WALLPAPER_KEY);
   });
-  const [defaultImageError, setDefaultImageError] = useState<boolean>(false);
+  const [defaultImageError, setDefaultImageError] = useState<boolean>(() => {
+    // 기본 배경화면이 빈 문자열이면 기본적으로 에러 상태로 설정
+    return DEFAULT_WALLPAPER === '';
+  });
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // 기본 이미지 로딩 오류 감지
+  // 기본 이미지 로딩 오류 감지 - 빈 문자열이 아닐 때만 이미지 로드 시도
   useEffect(() => {
-    if (wallpaperUrl === DEFAULT_WALLPAPER) {
+    if (wallpaperUrl && wallpaperUrl !== '') {
       const img = new Image();
       img.onload = () => setDefaultImageError(false);
       img.onerror = () => setDefaultImageError(true);
-      img.src = DEFAULT_WALLPAPER;
+      img.src = wallpaperUrl;
     }
   }, [wallpaperUrl]);
 
@@ -128,7 +131,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
   };
 
   // 배경화면 미리보기 스타일 결정
-  const previewBgStyle = defaultImageError || (wallpaperUrl === DEFAULT_WALLPAPER && defaultImageError) || wallpaperUrl === '' ? 
+  const previewBgStyle = defaultImageError || !wallpaperUrl || wallpaperUrl === '' ? 
     { backgroundColor: FALLBACK_BG_COLOR } : 
     { 
       backgroundImage: `url(${wallpaperUrl})`,
@@ -182,8 +185,8 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
         </p>
         {defaultImageError && isDefaultBackground && (
           <p className="text-xs text-orange-500">
-            기본 배경화면 이미지를 불러올 수 없어 기본 색상으로 표시됩니다.
-            이미지 파일을 선택하여 배경화면을 변경해보세요.
+            기본 배경화면은 단색 회색으로 설정됩니다.
+            원하는 이미지 파일을 선택하여 배경화면을 변경해보세요.
           </p>
         )}
       </div>
