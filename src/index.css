@@ -86,102 +86,392 @@
 
 @layer base {
   html {
-    font-family: -apple-system, BlinkMacSystemFont, 'San Francisco', 'Helvetica Neue', sans-serif;
+    font-family: 'Chicago', 'ChicagoFLF', 'Charcoal', monaco, monospace, system-ui;
   }
   
   body {
-    background-color: var(--mac-light-color);
-    color: var(--mac-dark-color);
+    background-color: var(--mac-os8-bg-color);
+    color: var(--mac-os8-text-color);
     margin: 0;
     padding: 0;
     overflow: hidden;
   }
 
+  /* Mac OS 8 Platinum 테마 색상 변수 */
   :root {
-    --mac-blue-color: #0070c9;
-    --mac-gray-color: #f5f5f7;
-    --mac-dark-color: #1d1d1f;
-    --mac-light-color: #fbfbfd;
-    --mac-border-color: #d2d2d7;
-    --mac-window-color: rgba(255, 255, 255, 0.8);
-    --mac-sidebar-color: #f9f9f9;
+    --mac-os8-bg-color: #BBBBBB;
+    --mac-os8-window-bg: #DDDDDD;
+    --mac-os8-text-color: #000000;
+    --mac-os8-border-color: #000000;
+    --mac-os8-border-light: #FFFFFF;
+    --mac-os8-border-shadow: #777777;
+    --mac-os8-button-face: #CCCCCC;
+    --mac-os8-button-highlight: #FFFFFF;
+    --mac-os8-button-shadow: #888888;
+    --mac-os8-accent-color: #000080;
+    --mac-os8-selection-color: #0000CC;
+    --mac-os8-sidebar-color: #CCCCCC;
+    --mac-os8-menubar-color: #CCCCCC;
+    --mac-os8-titlebar-active: linear-gradient(to right, #000080, #000080);
+    --mac-os8-titlebar-inactive: linear-gradient(to right, #999999, #999999);
+  }
+  
+  /* 기본 요소 스타일 재정의 */
+  button, input, select, textarea {
+    font-family: 'Chicago', 'ChicagoFLF', 'Charcoal', monaco, monospace, system-ui;
+  }
+  
+  button {
+    border-radius: 0;
+    background-color: var(--mac-os8-button-face);
+    color: var(--mac-os8-text-color);
+    box-shadow: 
+      inset 1px 1px 0 var(--mac-os8-button-highlight),
+      inset -1px -1px 0 var(--mac-os8-button-shadow),
+      1px 1px 0 var(--mac-os8-border-light),
+      -1px -1px 0 var(--mac-os8-border-shadow);
+    border: 1px solid var(--mac-os8-border-color);
+  }
+  
+  button:active {
+    box-shadow: 
+      inset -1px -1px 0 var(--mac-os8-button-highlight),
+      inset 1px 1px 0 var(--mac-os8-button-shadow);
+  }
+  
+  input[type="text"], 
+  input[type="password"], 
+  input[type="email"], 
+  input[type="number"],
+  input[type="search"],
+  textarea {
+    border-radius: 0;
+    background-color: #FFFFFF;
+    color: var(--mac-os8-text-color);
+    box-shadow: 
+      inset 1px 1px 0 var(--mac-os8-border-shadow),
+      inset -1px -1px 0 var(--mac-os8-border-light);
+    border: 1px solid var(--mac-os8-border-color);
+  }
+  
+  input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--mac-os8-selection-color);
+  }
+  
+  /* 체크박스 스타일 */
+  input[type="checkbox"] {
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    background-color: var(--mac-os8-button-face);
+    border: 1px solid var(--mac-os8-border-color);
+    box-shadow: 
+      inset 1px 1px 0 var(--mac-os8-border-shadow),
+      inset -1px -1px 0 var(--mac-os8-border-light);
+  }
+  
+  input[type="checkbox"]:checked {
+    background-color: var(--mac-os8-button-face);
+    position: relative;
+  }
+  
+  input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    top: -2px;
+    left: 2px;
+    font-size: 12px;
+    color: var(--mac-os8-text-color);
+  }
+  
+  /* 라디오 버튼 스타일 */
+  input[type="radio"] {
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: var(--mac-os8-button-face);
+    border: 1px solid var(--mac-os8-border-color);
+    box-shadow: 
+      inset 1px 1px 0 var(--mac-os8-border-shadow),
+      inset -1px -1px 0 var(--mac-os8-border-light);
+  }
+  
+  input[type="radio"]:checked {
+    position: relative;
+  }
+  
+  input[type="radio"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--mac-os8-text-color);
   }
 }
 
 @layer components {
   .bg-mac-light {
-    background-color: var(--mac-light-color);
+    background-color: var(--mac-os8-bg-color);
   }
   
   .bg-mac-window {
-    background-color: var(--mac-window-color);
+    background-color: var(--mac-os8-window-bg);
   }
   
   .text-mac-dark {
-    color: var(--mac-dark-color);
+    color: var(--mac-os8-text-color);
   }
   
   .bg-mac-blue {
-    background-color: var(--mac-blue-color);
+    background-color: var(--mac-os8-accent-color);
   }
   
   .text-mac-blue {
-    color: var(--mac-blue-color);
+    color: var(--mac-os8-accent-color);
   }
   
   .border-mac-border {
-    border-color: var(--mac-border-color);
+    border-color: var(--mac-os8-border-color);
   }
   
   .bg-mac-gray {
-    background-color: var(--mac-gray-color);
+    background-color: var(--mac-os8-bg-color);
   }
   
   .bg-mac-sidebar {
-    background-color: var(--mac-sidebar-color);
+    background-color: var(--mac-os8-sidebar-color);
   }
 
+  /* Mac OS 8 윈도우 스타일 */
   .mac-window {
-    background-color: var(--mac-window-color);
-    backdrop-filter: blur(20px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    border-radius: 0.5rem;
-    border: 1px solid var(--mac-border-color);
+    background-color: var(--mac-os8-window-bg);
+    box-shadow: 
+      inset 1px 1px 0 var(--mac-os8-border-light),
+      inset -1px -1px 0 var(--mac-os8-border-shadow),
+      1px 1px 0 var(--mac-os8-border-light),
+      -1px -1px 0 var(--mac-os8-border-shadow);
+    border: 1px solid var(--mac-os8-border-color);
+    border-radius: 0;
     overflow: hidden;
   }
   
-  .mac-button {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top: 0.375rem;
-    padding-bottom: 0.375rem;
-    border-radius: 0.375rem;
-    background-color: var(--mac-blue-color);
+  /* Mac OS 8 윈도우 타이틀바 */
+  .mac-window-title {
+    background: var(--mac-os8-titlebar-active);
     color: white;
+    font-weight: bold;
+    padding: 2px 6px;
+    text-align: center;
+    border-bottom: 1px solid var(--mac-os8-border-color);
+  }
+  
+  .mac-window-title-inactive {
+    background: var(--mac-os8-titlebar-inactive);
+    color: white;
+    font-weight: bold;
+    padding: 2px 6px;
+    text-align: center;
+    border-bottom: 1px solid var(--mac-os8-border-color);
+  }
+  
+  /* Mac OS 8 버튼 스타일 */
+  .mac-button {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    border-radius: 0;
+    background-color: var(--mac-os8-button-face);
+    color: var(--mac-os8-text-color);
     font-weight: 500;
-    transition-property: opacity;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 150ms;
+    box-shadow: 
+      inset 1px 1px 0 var(--mac-os8-button-highlight),
+      inset -1px -1px 0 var(--mac-os8-button-shadow),
+      1px 1px 0 var(--mac-os8-border-light),
+      -1px -1px 0 var(--mac-os8-border-shadow);
+    border: 1px solid var(--mac-os8-border-color);
   }
   
   .mac-button:hover {
     opacity: 0.9;
   }
   
-  .mac-input {
+  .mac-button:active {
+    box-shadow: 
+      inset -1px -1px 0 var(--mac-os8-button-highlight),
+      inset 1px 1px 0 var(--mac-os8-button-shadow);
+  }
+  
+  /* Mac OS 8 기본 버튼 스타일 */
+  .mac-button-default {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    border-radius: 0.375rem;
-    border: 1px solid var(--mac-border-color);
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    border-radius: 0;
+    background-color: var(--mac-os8-button-face);
+    color: var(--mac-os8-text-color);
+    font-weight: 500;
+    box-shadow: 
+      inset 1px 1px 0 var(--mac-os8-button-highlight),
+      inset -1px -1px 0 var(--mac-os8-button-shadow),
+      1px 1px 0 var(--mac-os8-border-light),
+      -1px -1px 0 var(--mac-os8-border-shadow);
+    border: 1px solid var(--mac-os8-border-color);
+    border-width: 2px;
+    border-style: solid;
+    border-color: var(--mac-os8-border-color);
+    outline: 1px solid var(--mac-os8-border-color);
+    outline-offset: 1px;
+  }
+  
+  /* Mac OS 8 입력 필드 스타일 */
+  .mac-input {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    border-radius: 0;
+    background-color: #FFFFFF;
+    color: var(--mac-os8-text-color);
+    box-shadow: 
+      inset 1px 1px 0 var(--mac-os8-border-shadow),
+      inset -1px -1px 0 var(--mac-os8-border-light);
+    border: 1px solid var(--mac-os8-border-color);
   }
   
   .mac-input:focus {
     outline: none;
-    --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
-    --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-    box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
-    --tw-ring-color: var(--mac-blue-color);
+    border-color: var(--mac-os8-selection-color);
+  }
+  
+  /* Mac OS 8 드롭다운/셀렉트 스타일 */
+  .mac-select {
+    appearance: none;
+    padding-left: 0.5rem;
+    padding-right: 1.5rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    border-radius: 0;
+    background-color: var(--mac-os8-button-face);
+    color: var(--mac-os8-text-color);
+    box-shadow: 
+      inset 1px 1px 0 var(--mac-os8-button-highlight),
+      inset -1px -1px 0 var(--mac-os8-button-shadow),
+      1px 1px 0 var(--mac-os8-border-light),
+      -1px -1px 0 var(--mac-os8-border-shadow);
+    border: 1px solid var(--mac-os8-border-color);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' viewBox='0 0 12 12'%3E%3Cpath fill='%23000' d='M3 5h6L6 9 3 5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center;
+  }
+  
+  /* Mac OS 8 카드/패널 스타일 */
+  .mac-panel {
+    background-color: var(--mac-os8-window-bg);
+    border: 1px solid var(--mac-os8-border-color);
+    box-shadow: 
+      inset 1px 1px 0 var(--mac-os8-border-light),
+      inset -1px -1px 0 var(--mac-os8-border-shadow);
+    border-radius: 0;
+    padding: 0.5rem;
+  }
+  
+  /* Mac OS 8 리스트 아이템 스타일 */
+  .mac-list-item {
+    padding: 0.25rem 0.5rem;
+    border-bottom: 1px solid var(--mac-os8-border-shadow);
+  }
+  
+  .mac-list-item:last-child {
+    border-bottom: none;
+  }
+  
+  .mac-list-item.selected {
+    background-color: var(--mac-os8-selection-color);
+    color: white;
+  }
+  
+  /* Mac OS 8 테이블 스타일 */
+  .mac-table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid var(--mac-os8-border-color);
+  }
+  
+  .mac-table th {
+    background-color: var(--mac-os8-button-face);
+    color: var(--mac-os8-text-color);
+    font-weight: bold;
+    text-align: left;
+    padding: 0.25rem 0.5rem;
+    border: 1px solid var(--mac-os8-border-color);
+  }
+  
+  .mac-table td {
+    padding: 0.25rem 0.5rem;
+    border: 1px solid var(--mac-os8-border-color);
+  }
+  
+  .mac-table tr:nth-child(even) {
+    background-color: #E8E8E8;
+  }
+
+  /* Mac OS 8 스타일 스크롤바 */
+  .mac-os8-scrollbar::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+    background-color: var(--mac-os8-bg-color);
+  }
+  
+  .mac-os8-scrollbar::-webkit-scrollbar-thumb {
+    background-color: var(--mac-os8-button-face);
+    border: 1px solid var(--mac-os8-border-color);
+    box-shadow: 
+      inset 1px 1px 0 var(--mac-os8-border-light),
+      inset -1px -1px 0 var(--mac-os8-border-shadow);
+  }
+  
+  .mac-os8-scrollbar::-webkit-scrollbar-button {
+    background-color: var(--mac-os8-button-face);
+    border: 1px solid var(--mac-os8-border-color);
+    box-shadow: 
+      inset 1px 1px 0 var(--mac-os8-border-light),
+      inset -1px -1px 0 var(--mac-os8-border-shadow);
+    height: 16px;
+    width: 16px;
+  }
+  
+  /* Mac OS 8 스타일 툴팁 */
+  .mac-tooltip {
+    position: absolute;
+    background-color: #FFFFCC;
+    border: 1px solid var(--mac-os8-border-color);
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    z-index: 50;
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Mac OS 8 스타일 로딩 인디케이터 */
+  .mac-loading {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--mac-os8-border-color);
+    border-top-color: var(--mac-os8-accent-color);
+    border-radius: 50%;
+    animation: mac-spin 1s linear infinite;
+  }
+  
+  @keyframes mac-spin {
+    to {
+      transform: rotate(360deg);
+    }
   }
 } 

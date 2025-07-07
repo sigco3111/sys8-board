@@ -8,21 +8,36 @@ interface TrafficLightsProps {
 
 const TrafficLights: React.FC<TrafficLightsProps> = ({ onClose, onMinimize, onMaximize }) => {
   return (
-    <div className="flex space-x-2">
+    <div className="flex space-x-1">
       <button 
         aria-label="Close window"
         onClick={onClose} 
-        className="w-3 h-3 bg-red-500 rounded-full hover:bg-red-600 transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500/50">
+        className="w-4 h-4 border border-mac-os8-border-color bg-white hover:bg-gray-200 focus:outline-none"
+        style={{
+          boxShadow: 'inset 1px 1px 0 #FFFFFF, inset -1px -1px 0 #777777'
+        }}
+      >
+        <span className="block w-2 h-2 mx-auto bg-black"></span>
       </button>
       <button 
         aria-label="Minimize window"
         onClick={onMinimize}
-        className="w-3 h-3 bg-yellow-500 rounded-full hover:bg-yellow-600 transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500/50">
+        className="w-4 h-4 border border-mac-os8-border-color bg-white hover:bg-gray-200 focus:outline-none"
+        style={{
+          boxShadow: 'inset 1px 1px 0 #FFFFFF, inset -1px -1px 0 #777777'
+        }}
+      >
+        <span className="block w-2 h-0.5 mx-auto bg-black mt-1.5"></span>
       </button>
       <button 
         aria-label="Maximize window"
         onClick={onMaximize}
-        className="w-3 h-3 bg-green-500 rounded-full hover:bg-green-600 transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500/50">
+        className="w-4 h-4 border border-mac-os8-border-color bg-white hover:bg-gray-200 focus:outline-none"
+        style={{
+          boxShadow: 'inset 1px 1px 0 #FFFFFF, inset -1px -1px 0 #777777'
+        }}
+      >
+        <span className="block w-2 h-2 mx-auto border border-black"></span>
       </button>
     </div>
   );

@@ -54,10 +54,10 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, title }) => {
   // 로딩 중일 때 로딩 화면 표시
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center h-screen bg-gray-100">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mx-auto mb-4"></div>
-          <p className="text-gray-700">로딩 중...</p>
+      <div className="flex items-center justify-center h-screen bg-mac-bg-color">
+        <div className="mac-panel p-6 text-center">
+          <div className="mac-loading mx-auto mb-4"></div>
+          <p className="text-mac-dark">로딩 중...</p>
         </div>
       </div>
     );
@@ -69,7 +69,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, title }) => {
   }
 
   return (
-    <div className="flex h-screen bg-gray-100 overflow-hidden">
+    <div className="flex h-screen bg-mac-os8-bg-color overflow-hidden">
       {/* 사이드바 */}
       <AdminSidebar collapsed={sidebarCollapsed} onToggle={handleSidebarToggle} />
       
@@ -79,27 +79,32 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, title }) => {
         <AdminHeader title={title} />
         
         {/* 메인 콘텐츠 */}
-        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
+        <main className="flex-1 overflow-x-hidden overflow-y-auto mac-os8-scrollbar bg-mac-os8-bg-color p-4">
           {/* 에러 메시지 */}
           {error && (
-            <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6" role="alert">
+            <div className="mac-panel border-l-4 border-red-500 text-mac-dark p-4 mb-4" role="alert">
               <p>{error}</p>
             </div>
           )}
           
           {/* 페이지 제목 */}
           {title && (
-            <div className="mb-6">
-              <h1 className="text-2xl font-semibold text-gray-800">{title}</h1>
-              <p className="text-sm text-gray-500 mt-1">
+            <div className="mb-4">
+              <h1 className="text-xl font-bold text-mac-dark">{title}</h1>
+              <p className="text-xs text-mac-dark mt-1">
                 {location.pathname === '/admin' ? '관리자 대시보드' : '관리자 페이지'}
               </p>
             </div>
           )}
           
           {/* 자식 컴포넌트 */}
-          <div className="bg-white rounded-lg shadow-sm p-6">
-            {children}
+          <div className="mac-window">
+            <div className="mac-window-title">
+              {title || '관리자 패널'}
+            </div>
+            <div className="p-4">
+              {children}
+            </div>
           </div>
         </main>
       </div>

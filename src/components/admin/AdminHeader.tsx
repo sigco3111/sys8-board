@@ -84,11 +84,11 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({ title = 'MAC-BOARD 관리자'
   };
 
   return (
-    <header className="bg-gray-800 text-white shadow-md">
-      <div className="flex items-center justify-between px-4 py-2">
+    <header className="bg-mac-menubar border-b border-mac-border">
+      <div className="flex items-center justify-between px-2 py-1">
         {/* 왼쪽 영역: 제목 */}
         <div className="flex items-center space-x-4">
-          <h1 className="text-lg font-bold">{title}</h1>
+          <h1 className="text-sm font-bold text-mac-dark">{title}</h1>
         </div>
 
         {/* 오른쪽 영역: 관리자 정보, 시간, 로그아웃 */}
@@ -96,25 +96,25 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({ title = 'MAC-BOARD 관리자'
           {/* 관리자 ID 표시 */}
           {admin && (
             <div className="flex items-center space-x-2">
-              <span className="text-sm font-medium">관리자: {admin.id}</span>
-              <span className="text-xs text-gray-300">
+              <span className="text-xs font-medium text-mac-dark">관리자: {admin.id}</span>
+              <span className="text-xs text-mac-dark">
                 ({new Date(admin.loggedInAt).toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' })} 로그인)
               </span>
             </div>
           )}
 
           {/* 현재 시간 */}
-          <span className="text-sm">
+          <span className="text-xs text-mac-dark">
             {time.toLocaleDateString('ko-KR', { weekday: 'short', month: 'long', day: 'numeric' })}
           </span>
-          <span className="text-sm">
+          <span className="text-xs text-mac-dark">
             {time.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' })}
           </span>
 
           {/* 로그아웃 버튼 */}
           <button 
             onClick={handleLogout} 
-            className="bg-red-600 hover:bg-red-700 text-white text-sm rounded px-3 py-1 transition-colors"
+            className="mac-button text-xs py-0 px-2"
           >
             로그아웃
           </button>

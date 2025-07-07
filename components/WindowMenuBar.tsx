@@ -3,7 +3,7 @@ import type { Menu, MenuItem as MenuItemType } from '../types';
 
 const SubMenu: React.FC<{ items: MenuItemType[]; closeAllMenus: () => void }> = ({ items, closeAllMenus }) => {
   return (
-    <div className="absolute left-full -top-1 mt-0 w-48 bg-white/80 backdrop-blur-xl rounded-md shadow-2xl ring-1 ring-black/5 py-1 z-20">
+    <div className="absolute left-full -top-1 mt-0 w-48 bg-mac-os8-window-bg border border-mac-os8-border-color shadow-mac-window py-1 z-20">
       {items.map((item, index) => (
         <MenuItem key={index} item={item} closeAllMenus={closeAllMenus} />
       ))}
@@ -36,10 +36,10 @@ const MenuItem: React.FC<{ item: MenuItemType; closeAllMenus: () => void }> = ({
         <button
           onClick={handleItemClick}
           disabled={item.disabled}
-          className={`w-full text-left px-3 py-1 text-black text-sm flex justify-between items-center transition-colors duration-100
+          className={`w-full text-left px-3 py-1 text-mac-os8-text-color text-xs flex justify-between items-center
           ${item.disabled
             ? 'text-gray-400'
-            : 'hover:bg-blue-500 hover:text-white'
+            : 'hover:bg-mac-os8-selection-color hover:text-white'
           }`}
         >
           <span>{item.label}</span>
@@ -52,12 +52,12 @@ const MenuItem: React.FC<{ item: MenuItemType; closeAllMenus: () => void }> = ({
     );
   }
 
-  return <div className="h-px bg-slate-300/70 my-1 mx-2" />;
+  return <div className="h-px bg-mac-os8-border-shadow my-1 mx-2" />;
 };
 
 const MenuDropdown: React.FC<{ menu: Menu; closeAllMenus: () => void }> = ({ menu, closeAllMenus }) => {
   return (
-    <div className="absolute left-0 mt-1 w-56 bg-white/80 backdrop-blur-xl rounded-md shadow-2xl ring-1 ring-black/5 py-1 z-10">
+    <div className="absolute left-0 mt-1 w-56 bg-mac-os8-window-bg border border-mac-os8-border-color shadow-mac-window py-1 z-10">
       {menu.items.map((item, index) => (
         <MenuItem key={index} item={item} closeAllMenus={closeAllMenus} />
       ))}
@@ -90,12 +90,16 @@ const WindowMenuBar: React.FC<WindowMenuBarProps> = ({ menus }) => {
   }
 
   return (
-    <div ref={menuBarRef} data-menu-bar className="relative flex items-center h-8 bg-slate-100/80 border-b border-slate-200/80 px-2 text-sm text-slate-800 flex-shrink-0">
+    <div 
+      ref={menuBarRef} 
+      data-menu-bar 
+      className="relative flex items-center h-6 bg-mac-os8-menubar-color border-b border-mac-os8-border-color px-2 text-xs text-mac-os8-text-color flex-shrink-0"
+    >
       {menus.map((menu) => (
         <div key={menu.name} className="relative">
           <button 
             onClick={() => handleMenuToggle(menu.name)}
-            className={`px-3 py-0.5 rounded transition-colors duration-150 ${activeMenu === menu.name ? 'bg-blue-500 text-white' : 'hover:bg-slate-200/70'}`}
+            className={`px-3 py-0.5 ${activeMenu === menu.name ? 'bg-mac-os8-selection-color text-white' : 'hover:bg-mac-os8-selection-color hover:text-white'}`}
           >
             {menu.name}
           </button>

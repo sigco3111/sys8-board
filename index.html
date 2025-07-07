@@ -4,39 +4,64 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/assets/favicon/favicon.svg" />
     <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.svg" />
-    <meta name="theme-color" content="#5856d6" />
+    <meta name="theme-color" content="#000080" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="description" content="macOS 스타일의 온라인 게시판 시스템 - Mac-Board" />
-    <title>macOS Style Board</title>
+    <meta name="description" content="Mac OS 8 스타일의 온라인 게시판 시스템 - Mac-Board" />
+    <title>Mac OS 8 Style Board</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chicago FLF 또는 유사 폰트를 로드 -->
+    <link href="https://fonts.cdnfonts.com/css/chicago-flf" rel="stylesheet">
     <style>
+      /* Chicago 폰트를 직접 정의 (CDN이 실패할 경우를 대비) */
+      @font-face {
+        font-family: 'Chicago';
+        src: url('https://cdn.jsdelivr.net/npm/chicago-12@1.0.0/font/chicago-12-webfont.woff2') format('woff2'),
+             url('https://cdn.jsdelivr.net/npm/chicago-12@1.0.0/font/chicago-12-webfont.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+      
       body {
-        font-family: 'Inter', sans-serif;
-        background-image: url('/assets/wallpapers/default.jpg');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
+        font-family: 'Chicago', 'ChicagoFLF', monaco, monospace, sans-serif;
+        background-color: #BBBBBB;
         overflow: hidden;
       }
-      /* Custom scrollbar to match macOS style */
+      
+      /* Mac OS 8 스타일 스크롤바 */
       ::-webkit-scrollbar {
-        width: 12px;
-        height: 12px;
-        background-color: transparent;
+        width: 16px;
+        height: 16px;
+        background-color: #BBBBBB;
       }
+      
       ::-webkit-scrollbar-thumb {
-        background-color: rgba(0,0,0,0.3);
-        border-radius: 20px;
-        border: 3px solid transparent;
-        background-clip: content-box;
+        background-color: #CCCCCC;
+        border: 1px solid #000000;
+        border-radius: 0;
+        box-shadow: 
+          inset 1px 1px 0 #FFFFFF,
+          inset -1px -1px 0 #777777;
+        background-clip: padding-box;
       }
+      
       ::-webkit-scrollbar-thumb:hover {
-        background-color: rgba(0,0,0,0.4);
+        background-color: #DDDDDD;
       }
-       ::-webkit-scrollbar-track {
-        background-color: transparent;
+      
+      ::-webkit-scrollbar-track {
+        background-color: #BBBBBB;
+      }
+      
+      ::-webkit-scrollbar-button {
+        background-color: #CCCCCC;
+        border: 1px solid #000000;
+        box-shadow: 
+          inset 1px 1px 0 #FFFFFF,
+          inset -1px -1px 0 #777777;
+        height: 16px;
+        width: 16px;
       }
       
       /* 모바일 가로모드 알림 */
