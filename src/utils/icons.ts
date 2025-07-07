@@ -34,7 +34,7 @@ export const ICONS = [
   { id: 'pin', label: '핀', emoji: '📌', macOS8Style: '/assets/icons/pin.svg' },
   
   // Mac OS 8 스타일의 아이콘들
-  { id: 'finder', label: '파인더', emoji: '🔍', macOS8Style: '/assets/icons/finder.svg' },
+  { id: 'finder', label: '파인더', emoji: '🔍', macOS8Style: '/assets/icons/finder2.svg' },
   { id: 'macos', label: '맥OS', emoji: '🍎', macOS8Style: '/assets/icons/macos.svg' },
   { id: 'command', label: '커맨드', emoji: '⌘', macOS8Style: '/assets/icons/command.svg' },
   { id: 'option', label: '옵션', emoji: '⌥', macOS8Style: '/assets/icons/option.svg' },

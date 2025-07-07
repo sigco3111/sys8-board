@@ -48,8 +48,24 @@ export const SearchIcon = ({ className }: { className?: string }) => (
 );
 
 export const AppleIcon = ({ className }: { className?: string }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 170" className={className} fill="currentColor">
-    <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.2-2.12-9.96-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.93 0.21-9.84-1.96-14.75-6.52-3.13-2.73-7.05-7.41-11.73-14.04-5.03-7.08-9.17-15.29-12.41-24.65-3.47-10.11-5.21-19.9-5.21-29.38 0-10.86 2.35-20.22 7.04-28.07 3.69-6.29 8.6-11.26 14.75-14.92 6.15-3.67 12.8-5.54 19.95-5.74 3.91 0 9.05 1.21 15.43 3.59 6.36 2.38 10.46 3.59 12.28 3.59 1.34 0 5.9-1.41 13.64-4.24 7.32-2.62 13.5-3.7 18.57-3.27 13.72 1.1 24.03 6.5 30.88 16.23-12.27 7.43-18.34 17.86-18.2 31.26 0.12 10.42 3.89 19.09 11.29 26 3.37 3.19 7.12 5.65 11.29 7.39-0.9 2.63-1.86 5.15-2.87 7.56zM115.84 7.32c0 8.17-2.98 15.79-8.92 22.83-7.16 8.38-15.82 13.22-25.2 12.45-0.12-1.02-0.19-2.09-0.19-3.21 0-7.81 3.4-16.17 9.43-23.05 3.01-3.45 6.82-6.31 11.45-8.59 4.62-2.25 8.99-3.5 13.1-3.75 0.12 1.12 0.18 2.23 0.18 3.32z" />
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 170" className={className}>
+    <defs>
+      <linearGradient id="apple-rainbow" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#61bb46" />
+        <stop offset="16%" stop-color="#61bb46" />
+        <stop offset="16%" stop-color="#fdb827" />
+        <stop offset="32%" stop-color="#fdb827" />
+        <stop offset="32%" stop-color="#f5821f" />
+        <stop offset="48%" stop-color="#f5821f" />
+        <stop offset="48%" stop-color="#e03a3e" />
+        <stop offset="64%" stop-color="#e03a3e" />
+        <stop offset="64%" stop-color="#963d97" />
+        <stop offset="80%" stop-color="#963d97" />
+        <stop offset="80%" stop-color="#009ddc" />
+        <stop offset="100%" stop-color="#009ddc" />
+      </linearGradient>
+    </defs>
+    <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.2-2.12-9.96-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.93 0.21-9.84-1.96-14.75-6.52-3.13-2.73-7.05-7.41-11.73-14.04-5.03-7.08-9.17-15.29-12.41-24.65-3.47-10.11-5.21-19.9-5.21-29.38 0-10.86 2.35-20.22 7.04-28.07 3.69-6.29 8.6-11.26 14.75-14.92 6.15-3.67 12.8-5.54 19.95-5.74 3.91 0 9.05 1.21 15.43 3.59 6.36 2.38 10.46 3.59 12.28 3.59 1.34 0 5.9-1.41 13.64-4.24 7.32-2.62 13.5-3.7 18.57-3.27 13.72 1.1 24.03 6.5 30.88 16.23-12.27 7.43-18.34 17.86-18.2 31.26 0.12 10.42 3.89 19.09 11.29 26 3.37 3.19 7.12 5.65 11.29 7.39-0.9 2.63-1.86 5.15-2.87 7.56zM115.84 7.32c0 8.17-2.98 15.79-8.92 22.83-7.16 8.38-15.82 13.22-25.2 12.45-0.12-1.02-0.19-2.09-0.19-3.21 0-7.81 3.4-16.17 9.43-23.05 3.01-3.45 6.82-6.31 11.45-8.59 4.62-2.25 8.99-3.5 13.1-3.75 0.12 1.12 0.18 2.23 0.18 3.32z" fill="url(#apple-rainbow)" />
   </svg>
 );
 
@@ -71,16 +87,29 @@ export const BatteryIcon = ({ className }: { className?: string }) => (
 
 export const SettingsIcon = ({ className }: { className?: string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
-    {/* Mac OS 8 스타일 설정 아이콘 */}
-    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" fill="#CCCCCC" stroke="currentColor" />
-    <path d="M4 4 L20 4 L20 20 L4 20 Z" fill="none" stroke="#FFFFFF" />
-    <path d="M20 4 L20 20 L4 20" fill="none" stroke="#888888" />
-    <circle cx="12" cy="12" r="6" fill="#999999" stroke="currentColor" />
-    <circle cx="12" cy="12" r="2" fill="#FFFFFF" stroke="currentColor" />
-    <rect x="11.5" y="4" width="1" height="3" fill="#999999" stroke="currentColor" strokeWidth="0.5" />
-    <rect x="11.5" y="17" width="1" height="3" fill="#999999" stroke="currentColor" strokeWidth="0.5" />
-    <rect x="17" y="11.5" width="3" height="1" fill="#999999" stroke="currentColor" strokeWidth="0.5" />
-    <rect x="4" y="11.5" width="3" height="1" fill="#999999" stroke="currentColor" strokeWidth="0.5" />
+    {/* 설정 아이콘 (톱니바퀴) */}
+    <circle cx="12" cy="12" r="5" fill="#808080" stroke="currentColor" strokeWidth="0.5" />
+    <circle cx="12" cy="12" r="1.5" fill="#AAAAAA" stroke="currentColor" strokeWidth="0.5" />
+    
+    {/* 톱니 8개 */}
+    {/* 상단 */}
+    <rect x="11.25" y="4" width="1.5" height="3" rx="0.5" fill="#808080" stroke="currentColor" strokeWidth="0.5" />
+    {/* 하단 */}
+    <rect x="11.25" y="17" width="1.5" height="3" rx="0.5" fill="#808080" stroke="currentColor" strokeWidth="0.5" />
+    {/* 좌측 */}
+    <rect x="4" y="11.25" width="3" height="1.5" rx="0.5" fill="#808080" stroke="currentColor" strokeWidth="0.5" />
+    {/* 우측 */}
+    <rect x="17" y="11.25" width="3" height="1.5" rx="0.5" fill="#808080" stroke="currentColor" strokeWidth="0.5" />
+    
+    {/* 대각선 톱니 */}
+    {/* 좌상단 */}
+    <rect x="6.5" y="6.5" width="3" height="1.5" rx="0.5" transform="rotate(-45 6.5 6.5)" fill="#808080" stroke="currentColor" strokeWidth="0.5" />
+    {/* 우상단 */}
+    <rect x="17.5" y="6.5" width="3" height="1.5" rx="0.5" transform="rotate(45 17.5 6.5)" fill="#808080" stroke="currentColor" strokeWidth="0.5" />
+    {/* 좌하단 */}
+    <rect x="6.5" y="17.5" width="3" height="1.5" rx="0.5" transform="rotate(45 6.5 17.5)" fill="#808080" stroke="currentColor" strokeWidth="0.5" />
+    {/* 우하단 */}
+    <rect x="17.5" y="17.5" width="3" height="1.5" rx="0.5" transform="rotate(-45 17.5 17.5)" fill="#808080" stroke="currentColor" strokeWidth="0.5" />
   </svg>
 );
 
