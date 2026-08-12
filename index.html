@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon/favicon2.svg" />
+    <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon2.svg" />
+    <meta name="theme-color" content="#000080" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="description" content="Mac OS 8 스타일의 온라인 게시판 시스템 - Mac-Board" />
+    <title>Mac OS 8 Style Board</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Chicago FLF 또는 유사 폰트를 로드 -->
+    <link href="https://fonts.cdnfonts.com/css/chicago-flf" rel="stylesheet">
+    <style>
+      /* Chicago 폰트를 직접 정의 (CDN이 실패할 경우를 대비) */
+      @font-face {
+        font-family: 'Chicago';
+        src: url('https://cdn.jsdelivr.net/npm/chicago-12@1.0.0/font/chicago-12-webfont.woff2') format('woff2'),
+             url('https://cdn.jsdelivr.net/npm/chicago-12@1.0.0/font/chicago-12-webfont.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+      
+      body {
+        font-family: 'Chicago', 'ChicagoFLF', monaco, monospace, sans-serif;
+        background-color: #BBBBBB;
+        overflow: hidden;
+      }
+      
+      /* 모바일 가로모드 알림 */
+      @media (max-width: 768px) and (orientation: portrait) {
+        #rotate-notice {
+          display: flex;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0,0,0,0.9);
+          z-index: 9999;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          color: white;
+          text-align: center;
+          padding: 20px;
+        }
+        #rotate-notice svg {
+          width: 50px;
+          height: 50px;
+          margin-bottom: 15px;
+          animation: rotate 2s infinite;
+        }
+        @keyframes rotate {
+          0% { transform: rotate(0deg); }
+          25% { transform: rotate(90deg); }
+          100% { transform: rotate(90deg); }
+        }
+      }
+      @media (min-width: 769px) or (orientation: landscape) {
+        #rotate-notice {
+          display: none;
+        }
+      }
+    </style>
+
+
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "react": "https://esm.sh/react@^19.1.0",
+    "react/": "https://esm.sh/react@^19.1.0/"
+  }
+}
+</script>
+  <script type="module" crossorigin src="/assets/index-4906618c.js"></script>
+  <link rel="stylesheet" href="/assets/index-3c1412e5.css">
+</head>
+  <body>
+    <div id="root"></div>
+    <div id="rotate-notice">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+        <path d="M7 14l5-5 5 5"></path>
+      </svg>
+      <h2>화면을 가로로 돌려주세요</h2>
+      <p>이 애플리케이션은 가로 화면 모드에 최적화되어 있습니다.</p>
+    </div>
+    
+  </body>
+</html>
